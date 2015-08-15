@@ -28,7 +28,7 @@ No recent mail found.
     <td>{{message.to.0}}</td>
     <td>{{message.subject}}</td>
     <td>{{message.date_sent}}</td>
-    <td style='text-align:right'>{% if message.attachments %}<span class='attachment'></span>{{message.attachments|length}} items{% endif %}</td>
+    <td style='text-align:right'>{% if message.attachments %}<span class='djm-attachment'></span>{{message.attachments|length}} items{% endif %}</td>
 </tr>
 {% endfor %}
 </tbody>

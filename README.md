@@ -35,7 +35,7 @@ and add the panel DEBUG_TOOLBAR_PANELS:
     )
 
 
-If you don't yet have the setting, you can append and reorder your panels wiht this:
+If you don't yet have the setting, you can append and reorder your panels with:
 
     DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
@@ -81,3 +81,11 @@ from django.test.utils import override_settings
     def test_send_email(self):
         ...
 
+
+The backend works similarly to the standard email backend and code shoudl not need to be reworked when using the MailToolbarBackend.
+
+    from django.core import mail
+
+    original_outbox = len(mail.outbox)
+    # Send mail ...
+    assert(len(mail.outbox) == original_outbox + 1)
