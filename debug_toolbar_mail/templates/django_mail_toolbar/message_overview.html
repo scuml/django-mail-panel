@@ -1,0 +1,34 @@
+{% if not message %}
+    <h4>Mail message could not be found</h4>
+    <p>It may have expired.  Increase your settings.MAIL_TOOLBAR_TTL if needed.</p>
+{% else %}
+<div>
+    <span class='djm-date-sent'>{{message.date_sent}}</span>
+    <b>{{message.from_email}}</b><br>
+    To: {% for to_email in message.to %}{{to_email}}{% endfor %}<br>
+    {% if message.reply_to %}
+        Reply-To: {{message.reply_to}}<br>
+    {% endif %}
+    {% if message.cc %}
+        {{message.cc}}<br>
+    {% endif %}
+    {% if message.bcc %}
+        {{message.bcc}}<br>
+    {% endif %}
+    {{message.subject}}<br>
+
+    {% if message.attachments %}
+    <div class='djm-no-select'>
+    {% for attachment in message.attachments %}
+        <a href='{% url "djdt:download_attachment" message.id forloop.counter0 %}'><span class='djm-attachment-group'><span class='djm-attachment'></span>{{attachment.0}}</span></a>
+    {% endfor %}
+    </div>
+    {% endif %}
+
+    <span class='djm-multipart-tabs'>
+    {% for multipart in alternatives %}
+        <span class='djm-multipart-tab djm-no-select' url='{% url "djdt:display_multipart" message.id multipart %}'>{{multipart}}</span>
+    {% endfor %}
+    </span>
+</div>
+{% endif %}

@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include debug_toolbar_mail/templates *
+recursive-include debug_toolbar_mail/static *

@@ -1,0 +1,47 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'debug_toolbar/mail/mail_toolbar.css' %}" type="text/css" media="screen" />
+<script src='{% static 'debug_toolbar/mail/toolbar.mail.js' %}'></script>
+
+<div class='djm-mail-toolbar'>
+
+{% if not mail_list %}
+No recent mail found.
+{% else %}
+
+{% spaceless %}
+<div class='djm-message-list djm-no-select'>
+<table id='djm_message_table'>
+<thead>
+<tr>
+    <th></th>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Date Sent</th>
+    <th></th>
+</tr>
+</thead>
+{% endspaceless %}
+<tbody>
+{% for message_id, message in mail_list.items %}
+<tr class='djm-message-row' id="{{message_id}}" url="{% url 'djdt:load_message' message_id %}">
+    <td class='djm-unread-cell'>{% if not message.read %}<div class='djm-unread'></div>{% endif %}</td>
+    <td>{{message.to.0}}</td>
+    <td>{{message.subject}}</td>
+    <td>{{message.date_sent}}</td>
+    <td style='text-align:right'>{% if message.attachments %}<span class='attachment'></span>{{message.attachments|length}} items{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+
+<div id='djm_message_container'>
+    <div id='djm_message_overview'></div>
+    <div id='djm_message_preview'>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+</div>

@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'debug_toolbar/mail/mail_toolbar.css' %}" type="text/css"/>
+<div id='djDebug'>
+<div class='djm-mail-toolbar'>
+<div id='plain_text_message'>
+    {{body|linebreaksbr}}
+</div>
+</div>
+</div>
