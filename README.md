@@ -13,7 +13,7 @@ This Django Debug Toolbar panel is released under the BSD license, like Django
 and the Django Debug Toolbar. If you like it, please consider contributing!
 
 The debug toolbar mail panel was originally created by Stephen Mitchell
-in August 2015 for The Tracktor.
+in August 2015 for The Tracktor. Special thanks to @ShawnMilo for the code review.
 
 
 Installation

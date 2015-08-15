@@ -11,7 +11,7 @@ from urls import urlpatterns
 
 class MailToolbarPanel(DebugPanel):
     """
-    Panel that displays informations about Sites
+    Panel that displays informations about mail
     """
     name = 'Mail'
     template = 'django_mail_toolbar/panel.html'
@@ -22,7 +22,7 @@ class MailToolbarPanel(DebugPanel):
         return _('Mail')
 
     def nav_subtitle(self):
-        mail_list = load_outbox() or {}
+        mail_list = load_outbox()
         unread_count = 0
         for message in mail_list.values():
             if not message.read:
@@ -33,15 +33,16 @@ class MailToolbarPanel(DebugPanel):
             return '{0} unread messages'.format(unread_count)
         return ''
 
-    def url(self):
-        return ''
-
     def title(self):
         return _('Mail')
 
     def process_response(self, request, response):
+        """
+        Main panel view.  Loads and displays listing of mail.
+        """
+
         mail_list = load_outbox()
-        if not mail_list:
+        if mail_list == {}:
             return
         mail_list = OrderedDict(
             sorted(mail_list.iteritems(),

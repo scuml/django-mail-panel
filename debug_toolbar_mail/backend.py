@@ -17,21 +17,17 @@ class MailToolbarBackend(EmailBackend):
     def __init__(self, *args, **kwargs):
         super(MailToolbarBackend, self).__init__(*args, **kwargs)
 
-        self.outbox = {}
-
-        outbox_cache = load_outbox()
-        if outbox_cache is not None:
-            self.outbox = outbox_cache
+        self.outbox = load_outbox()
 
 
     def send_messages(self, messages):
         """Redirect messages to the cached outbox"""
 
-        for message in messages:  # .message() triggers header validation
+        for message in messages:
             message.id = uuid4().get_hex()
             message.date_sent = datetime.datetime.now()
             message.read = False
-            message.message()
+            message.message()  # triggers header validation
             self.outbox[message.id] = message
 
         save_outbox(self.outbox)

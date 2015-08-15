@@ -1,11 +1,9 @@
 from django.http import HttpResponse
 from django.conf import settings
 from django.shortcuts import render
-from django.views.static import serve
 from django.utils.html import urlize
 from django.utils.safestring import mark_safe
 
-import os
 from utils import load_outbox, save_outbox
 
 if hasattr(settings, "DEBUG_TOOLBAR_FILTER_URL"):
@@ -19,13 +17,11 @@ def load_message(request, message_id):
     """
     message = None
     mail_list = load_outbox()
-    if mail_list:
-        message = mail_list.get(message_id)
+    message = mail_list.get(message_id, None)
 
     alternatives = list()
     if message:
-        if message.read is False:
-            message.read = True
+        message.read = True
 
         save_outbox(mail_list)
 
@@ -41,8 +37,15 @@ def load_message(request, message_id):
 
 
 def display_multipart(request, message_id, multipart):
+    """
+    Displays the requested multipart from the email message.
+    """
+
     mail_list = load_outbox()
-    message = mail_list.get(message_id)
+    message = mail_list.get(message_id, None)
+    if not message:
+        return HttpResponse('Messsage has expired from cache.')
+
     if multipart not in ('', 'text/plain'):
         for alternative in message.alternatives:
             if alternative[1] == multipart:
@@ -62,26 +65,19 @@ def download_attachment(request, message_id, attachment_id):
     """
 
     mail_list = load_outbox()
-    message = mail_list.get(message_id)
-    attachment = message.attachments[int(attachment_id)]
+    message = mail_list.get(message_id, None)
+    if not message:
+        return HttpResponse('Messsage has expired from cache.')
 
-    response = HttpResponse(attachment[1])
+    filename, content, content_type = message.attachments[int(attachment_id)]
+    response = HttpResponse(content)
+
+    if content_type:
+        response['Content-Type'] = content_type
+
     # Force download as attachment
-    response['Content-Type'] = ''
-    if attachment[2]:
-        response['Content-Type'] = attachment[2]
-
-
     response['Content-Disposition'] = 'attachment; filename={0}'.format(
-        attachment[0]
+        filename
     )
 
     return response
-
-def serve_static(request, path):
-    """View to serve static assets"""
-    root = getattr(settings, 'MAIL_TOOLBAR_MEDIA_ROOT', None)
-    if root is None:
-        parent = os.path.abspath(os.path.dirname(__file__))
-        root = os.path.join(parent, 'static', 'mail_toolbar')
-    return serve(request, path, root)
