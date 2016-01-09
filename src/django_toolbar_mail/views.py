@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.utils.html import urlize
 from django.utils.safestring import mark_safe
 
-from utils import load_outbox, save_outbox
+from .utils import load_outbox, save_outbox
 
 if hasattr(settings, "DEBUG_TOOLBAR_FILTER_URL"):
     settings.DEBUG_TOOLBAR_FILTER_URL = settings.DEBUG_TOOLBAR_FILTER_URL + ("__mail_toolbar_debug__")
@@ -27,8 +27,9 @@ def load_message(request, message_id):
 
         if message.body:
             alternatives.append("text/plain")
-        for alternative in message.alternatives:
-            alternatives.append(alternative[1])
+        if hasattr(message, "alternatives"):
+            for alternative in message.alternatives:
+                alternatives.append(alternative[1])
 
     return render(request, 'django_mail_toolbar/message_overview.html', dict(
         message=message,

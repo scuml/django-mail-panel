@@ -1,6 +1,6 @@
 from django.core.cache import cache
 
-from conf import MAIL_TOOLBAR_CACHE_KEY, MAIL_TOOLBAR_TTL
+from .conf import MAIL_TOOLBAR_CACHE_KEY, MAIL_TOOLBAR_TTL
 
 def load_outbox():
     """

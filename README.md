@@ -82,7 +82,7 @@ from django.test.utils import override_settings
         ...
 
 
-The backend works similarly to the standard email backend and code shoudl not need to be reworked when using the MailToolbarBackend.
+The backend works similarly to the standard email backend and code should not need to be reworked when using the MailToolbarBackend.
 
     from django.core import mail
 

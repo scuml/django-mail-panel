@@ -2,7 +2,7 @@ from django.core.mail.backends.locmem import EmailBackend
 import datetime
 from uuid import uuid4
 
-from utils import load_outbox, save_outbox
+from .utils import load_outbox, save_outbox
 
 class MailToolbarBackend(EmailBackend):
     """A email backend for use during testing.

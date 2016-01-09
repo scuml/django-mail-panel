@@ -1,0 +1,10 @@
+language: python
+python:
+  - 2.7
+  - 3.5
+env:
+  - DJANGO=1.8
+  - DJANGO=1.9
+install:
+  - pip install -q Django==$DJANGO
+script: python -m tests.test_toolbar

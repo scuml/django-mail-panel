@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from views import load_message, display_multipart, download_attachment
+from .views import load_message, display_multipart, download_attachment
 
 _PREFIX = 'mail_toolbar'
 
