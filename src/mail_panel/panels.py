@@ -14,7 +14,7 @@ class MailToolbarPanel(DebugPanel):
     Panel that displays informations about mail
     """
     name = 'Mail'
-    template = 'django_mail_toolbar/panel.html'
+    template = 'mail_panel/panel.html'
     has_content = True
     mail_list = OrderedDict()
 

@@ -1,4 +1,4 @@
 include LICENSE
 include README.md
-recursive-include debug_toolbar_mail/templates *
-recursive-include debug_toolbar_mail/static *
+recursive-include src/mail_panel/templates *
+recursive-include src/mail_panel/static *

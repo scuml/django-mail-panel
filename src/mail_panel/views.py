@@ -31,7 +31,7 @@ def load_message(request, message_id):
             for alternative in message.alternatives:
                 alternatives.append(alternative[1])
 
-    return render(request, 'django_mail_toolbar/message_overview.html', dict(
+    return render(request, 'mail_panel/message_overview.html', dict(
         message=message,
         alternatives=alternatives,
     ))
@@ -54,7 +54,7 @@ def display_multipart(request, message_id, multipart):
                 return HttpResponse(body)
 
 
-    return render(request, "django_mail_toolbar/plain_text_message.html", dict(
+    return render(request, "mail_panel/plain_text_message.html", dict(
         body=mark_safe(
             urlize(message.body).replace("<a ", "<a target='_blank'"))
     ))

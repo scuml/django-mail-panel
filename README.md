@@ -19,19 +19,19 @@ in August 2015 for The Tracktor. Special thanks to @ShawnMilo for the code revie
 Installation
 ============
 
-To install the mail panel, first install this package with `pip install django-debug-toolbar-mail`, then add debug_toolbar_mail after debug_toolbar to INSTALLED_APPS setting:
+To install the mail panel, first install this package with `pip install django-debug-toolbar-mail`, then add mail_panel after debug_toolbar to INSTALLED_APPS setting:
 
     INSTALLED_APPS = (
         ...
         'debug_toolbar',
-        'debug_toolbar_mail',
+        'mail_panel',
     )
 
 and add the panel DEBUG_TOOLBAR_PANELS:
 
     DEBUG_TOOLBAR_PANELS = (
         ...
-        'debug_toolbar_mail.panels.MailToolbarPanel',
+        'mail_panel.panels.MailToolbarPanel',
     )
 
 
@@ -47,7 +47,7 @@ If you don't yet have the setting, you can append and reorder your panels with:
         'debug_toolbar.panels.staticfiles.StaticFilesPanel',
         'debug_toolbar.panels.templates.TemplatesPanel',
         'debug_toolbar.panels.cache.CachePanel',
-        'debug_toolbar_mail.panels.MailToolbarPanel',
+        'mail_panel.panels.MailToolbarPanel',
         'debug_toolbar.panels.signals.SignalsPanel',
         'debug_toolbar.panels.logging.LoggingPanel',
         'debug_toolbar.panels.redirects.RedirectsPanel',
@@ -64,7 +64,7 @@ Configuration
 
 After installation, you now need to redirect mail to the mail toolbar.  Change your email backend to the following:
 
-    EMAIL_BACKEND = 'debug_toolbar_mail.backend.MailToolbarBackend'
+    EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
 
 
 By default, mail toolbar stores messages for one day before removing them from cache.  You can change this with the following setting:
@@ -77,7 +77,7 @@ Testing
 To preview emails sent from your test suite, add the email backend override to your tests with the following:
 from django.test.utils import override_settings
 
-    @override_settings(EMAIL_BACKEND='debug_toolbar_mail.backend.MailToolbarBackend')
+    @override_settings(EMAIL_BACKEND='mail_panel.backend.MailToolbarBackend')
     def test_send_email(self):
         ...
 

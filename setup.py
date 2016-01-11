@@ -20,11 +20,11 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='django-debug-toolbar-mail',
+    name='django-mail-panel',
     version='1.0.1',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
-    url='https://github.com/scuml/debug-toolbar-mail',
+    url='https://github.com/scuml/django-mail-panel',
 
     license=license,
     long_description=description,

@@ -6,7 +6,8 @@
 
 python setup.py sdist bdist_wheel
 
-COMMAND="from debug_toolbar_mail.panels import MailToolbarPanel; MailToolbarPanel()"
+DJANGO_SETTINGS_MODULE='tests.settings'
+COMMAND="from mail_panel.panels import MailToolbarPanel; MailToolbarPanel(object)"
 echo $COMMAND
 
 FILE=`ls -1 dist/*.whl | tail -n 1`

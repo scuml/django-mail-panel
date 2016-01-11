@@ -1,11 +1,10 @@
 from .context import *
 
 import unittest
-from debug_toolbar_mail.panels import MailToolbarPanel
+from mail_panel.panels import MailToolbarPanel
 
 class ToolbarSuite(unittest.TestCase):
 
-    @override_settings(EMAIL_BACKEND='debug_toolbar_mail.backend.MailToolbarBackend')
     def test_panel(self):
         """
         General 'does it run' test.
