@@ -1,6 +1,9 @@
 
-Django Debug Toolbar - Mail Panel
-===============================
+## Django Debug Toolbar - Mail Panel
+
+[![Build Status](https://secure.travis-ci.org/scuml/django-mail-panel.png?branch=master)](http://travis-ci.org/scuml/django-mail-panel)
+[![Downloads](https://img.shields.io/pypi/dw/django-mail-panel.svg)](https://pypi.python.org/pypi/django-mail-panel)
+
 
 ![Screeny](https://cloud.githubusercontent.com/assets/1790447/9289964/6aa7c4ba-434e-11e5-8594-3bb3efd0cd81.png)
 
