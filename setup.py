@@ -5,15 +5,16 @@ from setuptools import setup, find_packages
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+description = ''
 if 'publish' in sys.argv:
+    import pypandoc
+    description = pypandoc.convert('README.md', 'rst')
+
     if 'test' in sys.argv:
         os.system('python setup.py sdist bdist_wheel upload -rtest')
     else:
         os.system('python setup.py sdist bdist_wheel upload')
     sys.exit()
-
-import pypandoc
-description = pypandoc.convert('README.md', 'rst')
 
 
 with open('LICENSE') as f:
