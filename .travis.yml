@@ -4,7 +4,7 @@ python:
   - 3.5
 env:
   global:
-    - DJANGO_SETTINGS_MODULE=test.conf
+    - DJANGO_SETTINGS_MODULE=test.settings
   matrix:
     - DJANGO=1.8
     - DJANGO=1.9
