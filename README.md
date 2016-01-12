@@ -7,13 +7,11 @@ Django Debug Toolbar - Mail Panel
 
 Testing and debugging emails while developing a django app has never been pleasant.  Sending emails to a file-based backend requires a user to click through obtusely named files and does not provide a way to preview rendered html.  Sending email to a valid mailbox incurs a delay as the email is processed though a mail server, all the while adding clutter to a developer's inbox, and even occasionally finds itself buried in a spam directory.
 
-The Django Debug Toolbar Mail Panel attempts to address these problems by providing a way to preview emails within the browser window.
+The mail panel attempts to address these problems by providing a way to preview emails within the browser window.
 
-This Django Debug Toolbar panel is released under the BSD license, like Django
-and the Django Debug Toolbar. If you like it, please consider contributing!
+This mail panel is released under the Apache license. If you like it, please consider contributing!
 
-The debug toolbar mail panel was originally created by Stephen Mitchell
-in August 2015 for The Tracktor. Special thanks to @ShawnMilo for the code review.
+Special thanks to @ShawnMilo for the code review.
 
 
 Installation
@@ -35,7 +33,7 @@ and add the panel DEBUG_TOOLBAR_PANELS:
     )
 
 
-If you don't yet have the setting, you can append and reorder your panels with:
+If you use the DEBUG_TOOLBAR_PANELS to custom order your panels:
 
     DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
@@ -47,10 +45,10 @@ If you don't yet have the setting, you can append and reorder your panels with:
         'debug_toolbar.panels.staticfiles.StaticFilesPanel',
         'debug_toolbar.panels.templates.TemplatesPanel',
         'debug_toolbar.panels.cache.CachePanel',
-        'mail_panel.panels.MailToolbarPanel',
         'debug_toolbar.panels.signals.SignalsPanel',
         'debug_toolbar.panels.logging.LoggingPanel',
         'debug_toolbar.panels.redirects.RedirectsPanel',
+        'mail_panel.panels.MailToolbarPanel',
     ]
 
 
@@ -70,6 +68,8 @@ After installation, you now need to redirect mail to the mail toolbar.  Change y
 By default, mail toolbar stores messages for one day before removing them from cache.  You can change this with the following setting:
 
     MAIL_TOOLBAR_TTL = 86400  # 1 Day
+
+
 
 Testing
 =======

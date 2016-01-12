@@ -65,6 +65,7 @@
 }
 #djDebug .djm-mail-toolbar div#djm_message_container {
 	width:100%;
+	box-sizing: border-box;
 	background:white;
 	border: 1px solid #c0c1c0;
 	padding: 15px;
