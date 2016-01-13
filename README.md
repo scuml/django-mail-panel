@@ -20,7 +20,7 @@ Special thanks to @ShawnMilo for the code review.
 Installation
 ============
 
-To install the mail panel, first install this package with `pip install django-debug-toolbar-mail`, then add mail_panel after debug_toolbar to INSTALLED_APPS setting:
+To install the mail panel, first install this package with `pip install django-mail-panel`.  Then add the mail_panel app after debug_toolbar to the INSTALLED_APPS setting:
 
     INSTALLED_APPS = (
         ...
