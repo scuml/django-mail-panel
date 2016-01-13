@@ -7,8 +7,6 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 description = ''
 if 'publish' in sys.argv:
-    import pypandoc
-    description = pypandoc.convert('README.md', 'rst')
 
     if 'test' in sys.argv:
         os.system('python setup.py sdist bdist_wheel upload -rtest')
@@ -17,12 +15,17 @@ if 'publish' in sys.argv:
     sys.exit()
 
 
+if 'upload' in sys.argv:
+    import pypandoc
+    description = pypandoc.convert('README.md', 'rst')
+
+
 with open('LICENSE') as f:
     license = f.read()
 
 setup(
     name='django-mail-panel',
-    version='1.0.1',
+    version='1.0.2',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
