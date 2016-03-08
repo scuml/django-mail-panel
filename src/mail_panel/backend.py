@@ -24,7 +24,7 @@ class MailToolbarBackend(EmailBackend):
         """Redirect messages to the cached outbox"""
 
         for message in messages:
-            message.id = uuid4().get_hex()
+            message.id = uuid4().hex
             message.date_sent = datetime.datetime.now()
             message.read = False
             message.message()  # triggers header validation
