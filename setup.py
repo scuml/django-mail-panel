@@ -25,7 +25,7 @@ with open('LICENSE') as f:
 
 setup(
     name='django-mail-panel',
-    version='1.0.3',
+    version='1.0.5',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',

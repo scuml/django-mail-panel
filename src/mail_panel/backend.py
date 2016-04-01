@@ -26,7 +26,7 @@ class MailToolbarBackend(EmailBackend):
         for message in messages:
             try:
                 message.id = uuid4().get_hex()
-            except ValueError:
+            except AttributeError:
                 message.id = uuid4().hex  # python 3
             message.date_sent = datetime.datetime.now()
             message.read = False
