@@ -1,4 +1,4 @@
-(function ($) {
+djdt.jQuery(document).ready(function ($) {
 
     window.onresize = resize_message;
 
@@ -77,4 +77,4 @@
         load_message(this);
     })
 
-})(djdt.jQuery);
+});
