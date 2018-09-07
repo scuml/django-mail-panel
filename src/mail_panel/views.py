@@ -26,7 +26,10 @@ def load_message(request, message_id):
         save_outbox(mail_list)
 
         if message.body:
-            alternatives.append("text/plain")
+            if hasattr(message, 'content_subtype') and message.content_subtype == "html":
+                alternatives.append("text/html")
+            else:
+                alternatives.append("text/plain")
         if hasattr(message, "alternatives"):
             for alternative in message.alternatives:
                 alternatives.append(alternative[1])
@@ -48,10 +51,14 @@ def display_multipart(request, message_id, multipart):
         return HttpResponse('Messsage has expired from cache.')
 
     if multipart not in ('', 'text/plain'):
-        for alternative in message.alternatives:
-            if alternative[1] == multipart:
-                body = mark_safe(alternative[0].replace("<a ", "<a target='_blank'"))
-                return HttpResponse(body)
+        if hasattr(message, "alternatives"):
+            for alternative in message.alternatives:
+                if alternative[1] == multipart:
+                    body = mark_safe(alternative[0].replace("<a ", "<a target='_blank'"))
+                    return HttpResponse(body)
+        else:
+            body = mark_safe(message.body.replace("<a ", "<a target='_blank'"))
+            return HttpResponse(body)
 
 
     return render(request, "mail_panel/plain_text_message.html", dict(
