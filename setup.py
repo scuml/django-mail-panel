@@ -25,7 +25,7 @@ with open('LICENSE') as f:
 
 setup(
     name='django-mail-panel',
-    version='1.0.5',
+    version='1.1.0',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
@@ -45,8 +45,8 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,                 # because we're including static files
-    classifiers=(
-        'Development Status :: 4 - Beta',
+    classifiers=[
+        'Development Status :: 5 - Release',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Topic :: Internet :: WWW/HTTP',
@@ -58,5 +58,7 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-    ),
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+    ],
 )
