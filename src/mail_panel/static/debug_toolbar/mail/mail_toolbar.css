@@ -1,7 +1,3 @@
-/* @override
-	http://127.0.0.1:8000/__mail_toolbar_debug__/static/mail_toolbar.css
-	http://dev.thetracktor.com/static/debug_toolbar/mail/mail_toolbar.css */
-
 #djDebug .djm-mail-toolbar{
 	height: 100%;
 }
@@ -71,9 +67,14 @@
 	padding: 15px;
 	opacity:0;
 	margin-top: 5px!important;
-	height: 50%;
 	position:relative;
 	overflow:hidden;
+	transition: opacity .25s linear;
+	display: table;
+}
+#djDebug .djm-mail-toolbar div#djm_message_preview{
+	height: 100%;
+	display: table-row;
 }
 #djDebug .djm-mail-toolbar .djm-date-sent{
 	float: right;

@@ -1,37 +1,35 @@
 import os
+from pathlib import Path
 import sys
 from setuptools import setup, find_packages
 
 # allow setup.py to be run from any path
-os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+os.chdir(Path(__file__).absolute().parent)
 
-description = ''
 if 'publish' in sys.argv:
-
     if 'test' in sys.argv:
         os.system('python setup.py sdist bdist_wheel upload -rtest')
     else:
-        os.system('python setup.py sdist bdist_wheel upload')
+        os.system('python setup.py sdist bdist_wheel')
+        # twine upload --repository pypi dist/*1.1.0*  # For markdown to render, use twine
     sys.exit()
 
 
-if 'upload' in sys.argv:
-    import pypandoc
-    description = pypandoc.convert('README.md', 'rst')
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
 
-
-with open('LICENSE') as f:
-    license = f.read()
 
 setup(
     name='django-mail-panel',
-    version='1.1.0',
+    version='1.2.0',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
 
-    license=license,
-    long_description=description,
+    license="Apache",
+    long_description=read('README.md'),
+    long_description_content_type="text/markdown",
     author='Stephen Mitchell',
     author_email='stephen@echodot.com',
 
@@ -46,7 +44,7 @@ setup(
     include_package_data=True,
     zip_safe=False,                 # because we're including static files
     classifiers=[
-        'Development Status :: 5 - Release',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Topic :: Internet :: WWW/HTTP',

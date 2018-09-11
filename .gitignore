@@ -4,3 +4,5 @@ dist*
 *.pyc
 *sdist*
 .eggs
+Pipfile
+Pipfile.lock
