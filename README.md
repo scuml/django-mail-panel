@@ -6,9 +6,9 @@
 ![](https://cloud.githubusercontent.com/assets/1790447/9289964/6aa7c4ba-434e-11e5-8594-3bb3efd0cd81.png)
 
 
-Testing and debugging emails while developing a django app has never been pleasant.  Sending emails to a file-based backend requires a user to click through obtusely named files and does not provide a way to preview rendered html.  Sending email to a valid mailbox incurs a delay as the email is processed though a mail server, and cutters a developer's inbox.
+Testing and debugging e-mail while developing a Django app has never been pleasant.  Sending e-mail to a file-based backend requires a user to click through obtusely-named files and does not provide a way to preview rendered html.  Sending e-mail to a valid mailbox incurs a delay as the message is processed though a mail server, and clutters a developer's inbox.
 
-The mail panel attempts to address these problems by providing a way to preview emails within the browser using django debug toolbar.
+The mail panel attempts to address these problems by providing a way to preview emails within the browser using [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar).
 
 This mail panel is released under the Apache license. If you like it, please consider contributing!
 
@@ -18,24 +18,29 @@ Special thanks to @ShawnMilo for the code review.
 Installation
 ============
 
-To install the mail panel, first install this package with `pip install django-mail-panel`.  Then add the mail_panel app after debug_toolbar to the INSTALLED_APPS setting:
+To install the mail panel, first install this package with `pip install django-mail-panel`.  Then add the `mail_panel` app after `debug_toolbar`to the `INSTALLED_APPS` setting:
 
-    INSTALLED_APPS = (
-        ...
-        'debug_toolbar',
-        'mail_panel',
-    )
+```python
+INSTALLED_APPS = (
+    ...
+    'debug_toolbar',
+    'mail_panel',
+)
+```
 
-and add the panel DEBUG_TOOLBAR_PANELS:
+and add the panel `DEBUG_TOOLBAR_PANELS`:
 
-    DEBUG_TOOLBAR_PANELS = (
-        ...
-        'mail_panel.panels.MailToolbarPanel',
-    )
+```python
+DEBUG_TOOLBAR_PANELS = (
+    ...
+    'mail_panel.panels.MailToolbarPanel',
+)
+```
 
 
-If you use the DEBUG_TOOLBAR_PANELS to custom order your panels:
+If you use the `DEBUG_TOOLBAR_PANELS` to custom order your panels:
 
+```python
     DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
         'debug_toolbar.panels.timer.TimerPanel',
@@ -51,11 +56,13 @@ If you use the DEBUG_TOOLBAR_PANELS to custom order your panels:
         'debug_toolbar.panels.redirects.RedirectsPanel',
         'mail_panel.panels.MailToolbarPanel',
     ]
-
+```
 
 Collect static and you'll be good to go.
 
-    ./manage.py collectstatic
+```bash
+./manage.py collectstatic
+```
 
 
 Configuration
@@ -63,12 +70,16 @@ Configuration
 
 After installation, you now need to redirect mail to the mail toolbar.  Change your email backend to the following:
 
-    EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
+```python
+EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
+```
 
 
 By default, mail toolbar stores messages for one day before removing them from cache.  You can change this with the following setting:
 
-    MAIL_TOOLBAR_TTL = 86400  # 1 Day
+```python
+MAIL_TOOLBAR_TTL = 86400  # 1 Day
+```
 
 
 
@@ -76,17 +87,23 @@ Testing
 =======
 
 To preview emails sent from your test suite, add the email backend override to your tests with the following:
+
+```python
 from django.test.utils import override_settings
 
-    @override_settings(EMAIL_BACKEND='mail_panel.backend.MailToolbarBackend')
-    def test_send_email(self):
-        ...
+@override_settings(EMAIL_BACKEND='mail_panel.backend.MailToolbarBackend')
+def test_send_email(self):
+    # your code here
+```
 
 
 The backend works similarly to the standard email backend and code should not need to be reworked when using the MailToolbarBackend.
 
-    from django.core import mail
 
-    original_outbox = len(mail.outbox)
-    # Send mail ...
-    assert(len(mail.outbox) == original_outbox + 1)
+```python
+from django.core import mail
+
+original_outbox = len(mail.outbox)
+# Send mail ...
+assert(len(mail.outbox) == original_outbox + 1)
+```
