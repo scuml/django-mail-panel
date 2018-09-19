@@ -1,4 +1,10 @@
-function djmail_document_ready(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+function djmail_document_ready(f){
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+    f();
+  } else {
+    document.addEventListener('DOMContentLoaded', f);
+  }
+}
 
 function djmail_load(url, element, callback)
 {
