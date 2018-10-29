@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 # allow setup.py to be run from any path
-os.chdir(Path(__file__).absolute().parent)
+os.chdir(str(Path(__file__).absolute().parent))
 
 if 'publish' in sys.argv:
     if 'test' in sys.argv:
