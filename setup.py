@@ -22,7 +22,7 @@ def read(fname):
 
 setup(
     name='django-mail-panel',
-    version='1.2.1',
+    version='1.2.2',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
