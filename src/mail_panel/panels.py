@@ -3,13 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from collections import OrderedDict
 import datetime
 
-from debug_toolbar.panels import DebugPanel
+from debug_toolbar.panels import Panel
 
 from .conf import MAIL_TOOLBAR_TTL
 from .utils import load_outbox, save_outbox
 from .urls import urlpatterns
 
-class MailToolbarPanel(DebugPanel):
+class MailToolbarPanel(Panel):
     """
     Panel that displays informations about mail
     """
