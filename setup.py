@@ -1,10 +1,9 @@
 import os
-from pathlib import Path
 import sys
 from setuptools import setup, find_packages
 
 # allow setup.py to be run from any path
-os.chdir(str(Path(__file__).absolute().parent))
+os.chdir(os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
 
 if 'publish' in sys.argv:
     if 'test' in sys.argv:
