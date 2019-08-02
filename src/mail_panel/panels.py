@@ -3,13 +3,18 @@ from django.utils.translation import ugettext_lazy as _
 from collections import OrderedDict
 import datetime
 
-from debug_toolbar.panels import DebugPanel
+try:
+    from debug_toolbar.panels import Panel
+except ImportError:
+    # django-debug-toolbar 1.x back compatibility
+    from debug_toolbar.panels import DebugPanel as Panel
 
 from .conf import MAIL_TOOLBAR_TTL
 from .utils import load_outbox, save_outbox
 from .urls import urlpatterns
 
-class MailToolbarPanel(DebugPanel):
+
+class MailToolbarPanel(Panel):
     """
     Panel that displays informations about mail
     """
@@ -36,7 +41,7 @@ class MailToolbarPanel(DebugPanel):
     def title(self):
         return _('Mail')
 
-    def process_response(self, request, response):
+    def generate_stats(self, request, response):
         """
         Main panel view.  Loads and displays listing of mail.
         """
@@ -65,6 +70,13 @@ class MailToolbarPanel(DebugPanel):
         self.record_stats({
             'mail_list': self.mail_list,
         })
+
+    def process_response(self, request, response):
+        """
+        generate_stats replace process_response in django-debug-toolbar 2.0.
+        Call generate_stats for back compatibility.
+        """
+        self.generate_stats(request, response)
 
     @classmethod
     def get_urls(cls):
