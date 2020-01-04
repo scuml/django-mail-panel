@@ -1,16 +1,19 @@
 import os
 import sys
-from setuptools import setup, find_packages
+from pathlib import Path
+
+from setuptools import find_packages, setup
 
 # allow setup.py to be run from any path
-os.chdir(os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
+os.chdir(str(Path(__file__).absolute().parent))
 
 if 'publish' in sys.argv:
     if 'test' in sys.argv:
         os.system('python setup.py sdist bdist_wheel upload -rtest')
     else:
-        os.system('python setup.py sdist bdist_wheel')
-        # twine upload --repository pypi dist/*1.1.0*  # For markdown to render, use twine
+        pass
+        # Build with: python setup.py sdist bdist_wheel
+        # Upload with: twine upload --repository pypi dist/*1.2.3*  # For markdown to render, use twine
     sys.exit()
 
 
@@ -21,7 +24,7 @@ def read(fname):
 
 setup(
     name='django-mail-panel',
-    version='1.2.2',
+    version='1.2.3',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
@@ -57,5 +60,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 )

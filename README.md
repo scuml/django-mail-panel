@@ -38,6 +38,31 @@ DEBUG_TOOLBAR_PANELS = (
 ```
 
 
+Collect static and you'll be good to go.
+
+```bash
+./manage.py collectstatic
+```
+
+
+Configuration
+=============
+
+After installation, you now need to redirect mail to the mail toolbar.  Change your email backend to the following:
+
+```python
+EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
+```
+
+
+**[Optional]** 
+By default, mail toolbar stores messages for one day before removing them from cache.  You can change this with the following setting:
+
+```python
+MAIL_TOOLBAR_TTL = 86400  # 1 Day
+```
+
+**[Optional]**
 If you use the `DEBUG_TOOLBAR_PANELS` to custom order your panels:
 
 ```python
@@ -56,29 +81,6 @@ If you use the `DEBUG_TOOLBAR_PANELS` to custom order your panels:
         'debug_toolbar.panels.redirects.RedirectsPanel',
         'mail_panel.panels.MailToolbarPanel',
     ]
-```
-
-Collect static and you'll be good to go.
-
-```bash
-./manage.py collectstatic
-```
-
-
-Configuration
-=============
-
-After installation, you now need to redirect mail to the mail toolbar.  Change your email backend to the following:
-
-```python
-EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
-```
-
-
-By default, mail toolbar stores messages for one day before removing them from cache.  You can change this with the following setting:
-
-```python
-MAIL_TOOLBAR_TTL = 86400  # 1 Day
 ```
 
 
@@ -107,3 +109,12 @@ original_outbox = len(mail.outbox)
 # Send mail ...
 assert(len(mail.outbox) == original_outbox + 1)
 ```
+
+Shameless Plugs
+=======
+Like Django Mail Panel?  Be sure to check out and support these other tools for Mac that will improve your workflow:
+
+**[Kubermagic](https://echodot.com/kubermagic/)** - Automate, and script away tedious kubectl commands with Kubermagic; a UI for developers, QA teams, and those starting to learn the ins-and-outs of Kubernetes.     
+
+
+**[Red](https://echodot.com/red/)** - A visual and interactive Redis client, featuring live updating keys, an interactive console, pub/sub, lua script support and much more.
