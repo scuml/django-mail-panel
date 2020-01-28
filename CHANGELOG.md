@@ -1,5 +1,6 @@
 # Changelog
 
+* 1.2.4 Resolves conflicts with other libraries accessing mail (Thanks @ciotto)
 * 1.2.3 Updates import from DebugPanel to Panel (Thanks @ciotto & @WilliamMayor!)
 * 1.2.2 Fixes pathlib issue (Thanks @adamb70!)
 * 1.2.1 Fixes document.ready ReferenceError (Thanks @nschlemm!)
