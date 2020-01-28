@@ -1,8 +1,31 @@
+from django.core import mail
 from django.core.mail.backends.locmem import EmailBackend
 import datetime
 from uuid import uuid4
 
 from .utils import load_outbox, save_outbox
+
+
+class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
+    def __init__(self, message):
+        try:
+            self.id = uuid4().get_hex()
+        except AttributeError:
+            self.id = uuid4().hex  # python 3
+        self.date_sent = datetime.datetime.now()
+        self.read = False
+        message.message()  # triggers header validation
+
+        super(MailToolbarBackendEmail, self).__init__(
+            to=message.to,
+            cc=message.cc,
+            bcc=message.bcc,
+            reply_to=message.reply_to,
+            from_email=message.from_email,
+            body=message.body,
+            alternatives=message.alternatives,
+        )
+
 
 class MailToolbarBackend(EmailBackend):
     """A email backend for use during testing.
@@ -19,19 +42,12 @@ class MailToolbarBackend(EmailBackend):
 
         self.outbox = load_outbox()
 
-
     def send_messages(self, messages):
         """Redirect messages to the cached outbox"""
 
         for message in messages:
-            try:
-                message.id = uuid4().get_hex()
-            except AttributeError:
-                message.id = uuid4().hex  # python 3
-            message.date_sent = datetime.datetime.now()
-            message.read = False
-            message.message()  # triggers header validation
-            self.outbox[message.id] = message
+            new_message = MailToolbarBackendEmail(message)
+            self.outbox[new_message.id] = new_message
 
         save_outbox(self.outbox)
 
