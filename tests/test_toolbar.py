@@ -32,6 +32,7 @@ class ToolbarSuite(unittest.TestCase):
 
     @staticmethod
     def get_fake_message(
+            subject=None,
             to=None,
             cc=None,
             bcc=None,
@@ -42,6 +43,7 @@ class ToolbarSuite(unittest.TestCase):
     ):
         # TODO Use Faker (https://github.com/joke2k/faker)
         return mail.EmailMultiAlternatives(
+            subject=subject or ['fake subject'],
             to=to or ['to@fake.com'],
             cc=cc or ['cc@fake.com'],
             bcc=bcc or ['bcc@fake.com'],
@@ -73,6 +75,7 @@ class ToolbarSuite(unittest.TestCase):
         message = MailToolbarBackendEmail(fake_message)
 
         # Check email fields
+        self.assertEqual(message.subject, fake_message.subject)
         self.assertEqual(message.to, fake_message.to)
         self.assertEqual(message.cc, fake_message.cc)
         self.assertEqual(message.bcc, fake_message.bcc)
