@@ -17,6 +17,7 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
         message.message()  # triggers header validation
 
         super(MailToolbarBackendEmail, self).__init__(
+            subject=message.subject,
             to=message.to,
             cc=message.cc,
             bcc=message.bcc,
