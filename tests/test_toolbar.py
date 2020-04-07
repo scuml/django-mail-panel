@@ -43,7 +43,7 @@ class ToolbarSuite(unittest.TestCase):
     ):
         # TODO Use Faker (https://github.com/joke2k/faker)
         return mail.EmailMultiAlternatives(
-            subject=subject or ['fake subject'],
+            subject=subject or 'fake subject',
             to=to or ['to@fake.com'],
             cc=cc or ['cc@fake.com'],
             bcc=bcc or ['bcc@fake.com'],
