@@ -24,7 +24,7 @@ def read(fname):
 
 setup(
     name='django-mail-panel',
-    version='1.2.3',
+    version='1.2.5',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
@@ -52,8 +52,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
