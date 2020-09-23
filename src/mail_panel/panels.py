@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from collections import OrderedDict
 import datetime
 
+from django.templatetags.static import static
+
 try:
     from debug_toolbar.panels import Panel
 except ImportError:
@@ -22,6 +24,12 @@ class MailToolbarPanel(Panel):
     template = 'mail_panel/panel.html'
     has_content = True
     mail_list = OrderedDict()
+
+    @property
+    def scripts(self):
+        scripts = super().scripts
+        scripts.append(static("debug_toolbar/mail/toolbar.mail.js"))
+        return scripts
 
     def nav_title(self):
         return _('Mail')

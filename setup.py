@@ -24,7 +24,7 @@ def read(fname):
 
 setup(
     name='django-mail-panel',
-    version='1.2.5',
+    version='3.1',
     description='A panel for django-debug-toolbar that allows for ' +
                 'viewing of recently sent email.',
     url='https://github.com/scuml/django-mail-panel',
@@ -40,8 +40,8 @@ setup(
     package_data={'': ['LICENSE']},
 
     install_requires=[
-        'django>=1.8',
-        'django-debug-toolbar>=1.0',
+        'django>=2.2',
+        'django-debug-toolbar>=3.0',
     ],
     include_package_data=True,
     zip_safe=False,                 # because we're including static files
