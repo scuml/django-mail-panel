@@ -18,6 +18,7 @@ No recent mail found.
     <th>Subject</th>
     <th>Date Sent</th>
     <th></th>
+    <th style="text-align:center"><img jsmethod="clear_all_messages" url="{% url 'djdt:clear_all_messages' %}" class="table-icon" src="{% static 'debug_toolbar/mail/trash.png' %}" alt=""></th>
 </tr>
 </thead>
 {% endspaceless %}
@@ -29,6 +30,7 @@ No recent mail found.
     <td>{{message.subject}}</td>
     <td>{{message.date_sent}}</td>
     <td style='text-align:right'>{% if message.attachments %}<span class='djm-attachment'></span>{{message.attachments|length}} items{% endif %}</td>
+    <td style="text-align:center"><img jsmethod="clear_message" url="{% url 'djdt:clear_message' message_id %}" class="table-icon" src="{% static 'debug_toolbar/mail/trash.png' %}" alt=""></td>
 </tr>
 {% endfor %}
 </tbody>
