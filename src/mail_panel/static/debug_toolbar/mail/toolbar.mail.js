@@ -19,10 +19,17 @@ function djmail_load(url, element, callback)
 
 djmail_document_ready(function(){
 
-    window.onresize = resize_message;
-
     var $q = document.querySelector.bind(document);
     var $qa = document.querySelectorAll.bind(document);
+
+    window.onresize = resize_message;
+
+    // resize on message list css resize
+    let observer = new MutationObserver(function(mutations) {
+      resize_message()
+    });
+    let child = $q('.djm-message-list');
+    observer.observe(child, { attributes: true });
 
     function resize_message() {
         let new_height = window.innerHeight - $q("#djm_message_container").getBoundingClientRect().top + window.scrollY + window.pageYOffset -10
