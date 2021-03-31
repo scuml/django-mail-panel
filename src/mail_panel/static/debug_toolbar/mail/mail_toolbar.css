@@ -58,6 +58,7 @@
 	max-height: 500px;
 	overflow: scroll;
 	border: 1px solid #d5d6d5;
+	resize: vertical;
 }
 #djDebug .djm-mail-toolbar div#djm_message_container {
 	width:100%;
