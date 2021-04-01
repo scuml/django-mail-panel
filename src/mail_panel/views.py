@@ -1,15 +1,16 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from django.shortcuts import render
 from django.utils.html import urlize
 from django.utils.safestring import mark_safe
 
-from .utils import load_outbox, save_outbox
+from .utils import load_outbox, save_outbox, clear_outbox
 
 if hasattr(settings, "DEBUG_TOOLBAR_FILTER_URL"):
     settings.DEBUG_TOOLBAR_FILTER_URL = settings.DEBUG_TOOLBAR_FILTER_URL + ("__mail_toolbar_debug__")
 else:
     settings.DEBUG_TOOLBAR_FILTER_URL = ("__mail_toolbar_debug__",)
+
 
 def load_message(request, message_id):
     """
@@ -89,3 +90,24 @@ def download_attachment(request, message_id, attachment_id):
     )
 
     return response
+
+def clear_message(request, message_id):
+    """
+    Clears a message from the cache
+    """
+    mail_list = load_outbox()
+    try:
+        del(mail_list[message_id])
+    except KeyError:
+        pass
+    save_outbox(mail_list)
+
+    return JsonResponse({"status": "success"})
+
+def clear_all_messages(request):
+    """
+    Clears all message from the cache
+    """
+    clear_outbox()
+
+    return JsonResponse({"status": "success"})

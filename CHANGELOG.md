@@ -1,5 +1,6 @@
 # Changelog
 
+* 3.2 Adds ability to resize panels and clear messages. (Thanks @jensenbox)
 * 1.2.5 Fixes subject line (Thanks @indrif)
 * 1.2.4 Resolves conflicts with other libraries accessing mail (Thanks @ciotto)
 * 1.2.3 Updates import from DebugPanel to Panel (Thanks @ciotto & @WilliamMayor!)

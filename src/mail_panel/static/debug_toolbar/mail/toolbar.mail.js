@@ -6,6 +6,24 @@ function djmail_document_ready(f){
     }
 }
 
+function djmail_get(url, callback)
+{
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+            try {
+                var data = JSON.parse(req.responseText);
+            } catch(err) {
+                console.log(err.message + " in " + req.responseText);
+                return;
+            }
+            callback(data);
+        }
+    };
+    req.open("GET", url, true);
+    req.send();
+}
+
 function djmail_load(url, element, callback)
 {
     var req = new XMLHttpRequest();
@@ -29,7 +47,9 @@ djmail_document_ready(function(){
       resize_message()
     });
     let child = $q('.djm-message-list');
-    observer.observe(child, { attributes: true });
+    if(child){
+        observer.observe(child, { attributes: true });
+    }
 
     function resize_message() {
         let new_height = window.innerHeight - $q("#djm_message_container").getBoundingClientRect().top + window.scrollY + window.pageYOffset -10
@@ -49,6 +69,38 @@ djmail_document_ready(function(){
         if (sidebar_textbox)
             sidebar_textbox.innerHTML = unread_text;
     }
+
+    function clear_message(url){
+        djmail_get(url, function(data){
+            if(data["status"] != "success"){
+                return
+            }
+            $q("#djm_message_table tbody tr [url='"+ url +"']").closest("tr").remove();
+            $q('#djm_message_container').style.opacity = 0;
+            resize_message();
+        })
+
+
+    }
+    window.settings["clear_message"] = clear_message
+
+    function clear_all_messages(url){
+        var confirm = window.confirm("Are you sure you want to clear all messages?");
+        if (confirm == false) {
+            return
+        }
+        djmail_get(url, function(data){
+            if(data["status"] != "success"){
+                return
+            }
+            $qa("#djm_message_table tbody tr").forEach(el => el.remove());
+            $q('#djm_message_container').style.opacity = 0;
+            resize_message();
+        })
+    }
+    window.settings["clear_all_messages"] = clear_all_messages
+
+
     function load_message(element){
         let message_id = element.id;
         let url = element.getAttribute('url');
@@ -116,11 +168,17 @@ djmail_document_ready(function(){
     }
 
     $qa(".djm-message-row").forEach(function(e){
-        console.info("e");
         e.addEventListener('click', function(){
-            console.info("click", this);
             load_message(this);
         })
     });
+    $qa("[jsmethod]").forEach(function(e){
+        e.addEventListener('click', function(e){
+            e.stopPropagation(); // stop row onClick event
+            var method = window.settings[this.getAttribute("jsmethod")]
+            method(this.getAttribute("url"))
 
+        })
+
+    })
 });
