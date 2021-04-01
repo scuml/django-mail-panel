@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "django-mail-panel"
+version = "3.2"
+description = "A panel for django-debug-toolbar that allows for viewing of recently sent email."
+authors = ["Stephen Mitchell"]
+license = "Apache Software License"
+readme = "README.md"
+homepage = "https://github.com/scuml/django-mail-panel"
+repository = "https://github.com/scuml/django-mail-panel"
+keywords = ["django", "django-debug-toolbar", "mail"]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Topic :: Internet :: WWW/HTTP',
+    'License :: OSI Approved :: Apache Software License',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+]
+include = [
+    "LICENSE",
+]
+
+packages = [
+    { include = "mail_panel" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
