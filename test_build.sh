@@ -13,20 +13,6 @@ echo $TEST
 FILE=`ls -1 dist/*.whl | tail -n 1`
 echo "Verifying build of $FILE"
 
-if [ -z "$1" ] || [ "$1" -eq "2" ]; then
-    echo "# Installing virtualenv for Python 2"
-    rm -rf 27-sdist  # ensure clean state if ran repeatedly
-    virtualenv 27-sdist
-
-    echo "# Install Python 2 requirements"
-    27-sdist/bin/pip install django $FILE
-
-    echo "# Run command with Python 2"
-    27-sdist/bin/python -m "$TEST"
-
-    echo "# Test using Python 2 ended"
-fi
-
 if [ -z "$1" ] || [ "$1" -eq "3" ]; then
     echo "# Installing virtualenv for Python 3"
     rm -rf 3-sdist  # ensure clean state if ran repeatedly
