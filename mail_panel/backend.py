@@ -1,5 +1,6 @@
 from django.core import mail
 from django.core.mail.backends.locmem import EmailBackend
+from django.utils.timezone import now
 import datetime
 from uuid import uuid4
 
@@ -12,7 +13,7 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
             self.id = uuid4().get_hex()
         except AttributeError:
             self.id = uuid4().hex  # python 3
-        self.date_sent = datetime.datetime.now()
+        self.date_sent = now()
         self.read = False
         message.message()  # triggers header validation
 
