@@ -42,6 +42,8 @@ djmail_document_ready(function(){
 
     window.onresize = resize_message;
 
+    window.mail_panel_settings = {}
+
     // resize on message list css resize
     let observer = new MutationObserver(function(mutations) {
       resize_message()
@@ -82,7 +84,7 @@ djmail_document_ready(function(){
 
 
     }
-    window.settings["clear_message"] = clear_message
+    window.mail_panel_settings["clear_message"] = clear_message
 
     function clear_all_messages(url){
         var confirm = window.confirm("Are you sure you want to clear all messages?");
@@ -98,7 +100,7 @@ djmail_document_ready(function(){
             resize_message();
         })
     }
-    window.settings["clear_all_messages"] = clear_all_messages
+    window.mail_panel_settings["clear_all_messages"] = clear_all_messages
 
 
     function load_message(element){
@@ -175,7 +177,7 @@ djmail_document_ready(function(){
     $qa("[jsmethod]").forEach(function(e){
         e.addEventListener('click', function(e){
             e.stopPropagation(); // stop row onClick event
-            var method = window.settings[this.getAttribute("jsmethod")]
+            var method = window.mail_panel_settings[this.getAttribute("jsmethod")]
             method(this.getAttribute("url"))
 
         })
