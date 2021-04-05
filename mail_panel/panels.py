@@ -4,6 +4,7 @@ from collections import OrderedDict
 import datetime
 
 from django.templatetags.static import static
+from django.utils.timezone import now
 
 try:
     from debug_toolbar.panels import Panel
@@ -65,7 +66,7 @@ class MailToolbarPanel(Panel):
         prev_len = len(mail_list)
 
         # Expire messages past TTL
-        expire_at = datetime.datetime.now() - datetime.timedelta(
+        expire_at = now() - datetime.timedelta(
             seconds=MAIL_TOOLBAR_TTL)
         for message_id, message in list(mail_list.items()):
             if message.date_sent < expire_at:
