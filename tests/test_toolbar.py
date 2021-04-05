@@ -9,6 +9,7 @@ from debug_toolbar.toolbar import DebugToolbar
 from django.core import mail
 from mail_panel.backend import MailToolbarBackendEmail, MailToolbarBackend
 from mail_panel.panels import MailToolbarPanel
+from mail_panel.utils import clear_outbox
 
 from django.test.client import RequestFactory
 rf = RequestFactory()
@@ -61,8 +62,25 @@ class ToolbarSuite(unittest.TestCase):
         self.assertEqual(p.toolbar, self.toolbar)
 
     def test_generate_stats(self):
+
+        clear_outbox()
+
         p = MailToolbarPanel(*self.panel_args)
+
+        # Test empty indox
         p.generate_stats(None, None)
+        self.assertEqual(len(p.mail_list), 0)
+
+
+        # Test inbox with one message
+        fake_message = self.get_fake_message()
+        backend = MailToolbarBackend()
+        backend.send_messages([fake_message])
+
+        p.generate_stats(None, None)
+        self.assertEqual(len(p.mail_list), 1)
+
+
 
     def test_process_response(self):
         p = MailToolbarPanel(*self.panel_args)
