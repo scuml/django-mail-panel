@@ -81,6 +81,10 @@
 	float: right;
 	color: #888 !important;
 }
+#djDebug .djm-mail-toolbar .djm-extra-headers{
+	border-top: 1px solid #f5f5f5;
+	color: #888 !important;
+}
 #djDebug .djm-mail-toolbar #djm_message_overview{
 	border-bottom: 1px solid #f5f5f5;
 	position:relative;

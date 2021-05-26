@@ -16,6 +16,13 @@
         {{message.bcc}}<br>
     {% endif %}
     {{message.subject}}<br>
+    {% if message.extra_headers %}
+        <div class='djm-extra-headers'>
+            {% for header, value in message.extra_headers.items %}
+                {{header}}: {{value}}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% if message.attachments %}
     <div class='djm-no-select'>
