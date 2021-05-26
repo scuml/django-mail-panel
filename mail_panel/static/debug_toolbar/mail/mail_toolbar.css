@@ -108,10 +108,16 @@
 	color: black;
 }
 
-#djDebug .djm-mail-toolbar #plain_text_message{
-	font-family: sans-serif;
+#djDebug .djm-mail-toolbar #plain_text_message,
+#djDebug .djm-mail-toolbar #raw_message{
 	font-size: 12px;
 	margin: 10px 0px;
+}
+#djDebug .djm-mail-toolbar #plain_text_message{
+	font-family: sans-serif;
+}
+#djDebug .djm-mail-toolbar #raw_message{
+	font-family: monospace;
 }
 #djDebug .djm-mail-toolbar span.djm-attachment-group{
 	margin-right: 10px;

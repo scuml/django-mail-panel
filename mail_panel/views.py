@@ -20,7 +20,7 @@ def load_message(request, message_id):
     mail_list = load_outbox()
     message = mail_list.get(message_id, None)
 
-    alternatives = list()
+    alternatives = ["message/rfc822"]
     if message:
         message.read = True
 
@@ -52,7 +52,11 @@ def display_multipart(request, message_id, multipart):
         return HttpResponse('Messsage has expired from cache.')
 
     if multipart not in ('', 'text/plain'):
-        if hasattr(message, "alternatives"):
+        if multipart == "message/rfc822":
+            return render(request, "mail_panel/raw_message.html", dict(
+                body=message.message().as_string())
+            )
+        elif hasattr(message, "alternatives"):
             for alternative in message.alternatives:
                 if alternative[1] == multipart:
                     body = mark_safe(alternative[0].replace("<a ", "<a target='_blank'"))
