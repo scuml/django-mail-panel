@@ -59,16 +59,16 @@ def display_multipart(request, message_id, multipart):
         elif hasattr(message, "alternatives"):
             for alternative in message.alternatives:
                 if alternative[1] == multipart:
-                    body = mark_safe(alternative[0].replace("<a ", "<a target='_blank'"))
+                    body = mark_safe(alternative[0].replace("<a ", "<a target='_blank' "))
                     return HttpResponse(body)
         else:
-            body = mark_safe(message.body.replace("<a ", "<a target='_blank'"))
+            body = mark_safe(message.body.replace("<a ", "<a target='_blank' "))
             return HttpResponse(body)
 
 
     return render(request, "mail_panel/plain_text_message.html", dict(
         body=mark_safe(
-            urlize(message.body).replace("<a ", "<a target='_blank'"))
+            urlize(message.body).replace("<a ", "<a target='_blank' "))
     ))
 
 
