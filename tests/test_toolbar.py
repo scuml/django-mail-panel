@@ -41,6 +41,7 @@ class ToolbarSuite(unittest.TestCase):
             from_email=None,
             body=None,
             alternatives=None,
+            headers=None,
     ):
         # TODO Use Faker (https://github.com/joke2k/faker)
         return mail.EmailMultiAlternatives(
@@ -52,6 +53,7 @@ class ToolbarSuite(unittest.TestCase):
             from_email=from_email or 'from_email@fake.com',
             body=body or 'body',
             alternatives=alternatives or [('<b>HTML</b> body', 'text/html')],
+            headers=headers or {'X-MyHeader': 'myheader'}
         )
 
     def test_panel(self):
@@ -101,6 +103,7 @@ class ToolbarSuite(unittest.TestCase):
         self.assertEqual(message.from_email, fake_message.from_email)
         self.assertEqual(message.body, fake_message.body)
         self.assertEqual(message.alternatives, fake_message.alternatives)
+        self.assertEqual(message.extra_headers, fake_message.extra_headers)
 
         # Check extra fields
         self.assertIsNotNone(message.id)
