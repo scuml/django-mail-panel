@@ -1,6 +1,15 @@
-from django.core.cache import cache
+from django.core.cache import cache, caches
 
 from .conf import MAIL_TOOLBAR_CACHE_KEY, MAIL_TOOLBAR_TTL
+
+# Use local memory cache if default cache is a DummyCache
+if caches.settings.get('default', {}).get('BACKEND', '').endswith('.DummyCache'):
+    caches.settings['mail_panel'] = {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'mail-panel',
+    }
+    cache = caches.create_connection('mail_panel')
+
 
 def load_outbox():
     """

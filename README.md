@@ -54,7 +54,7 @@ After installation, you now need to redirect mail to the mail toolbar.  Change y
 EMAIL_BACKEND = 'mail_panel.backend.MailToolbarBackend'
 ```
 
-**Important:** This plugin uses Django's cache backend to store messages.  If you are using `DummyCache`, the mail panel will not work.  
+**Important:** This plugin uses Django's cache backend to store messages.  If you are using `DummyCache`, the mail panel will use a local memory cache, and will reset messages when the server is restarted.
 
 
 **[Optional]** 
