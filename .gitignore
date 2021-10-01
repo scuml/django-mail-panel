@@ -6,3 +6,5 @@ dist*
 .eggs
 Pipfile
 Pipfile.lock
+.coverage
+.tox/
