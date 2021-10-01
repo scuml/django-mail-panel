@@ -1,35 +1,23 @@
-from django.conf.urls import url
-from .views import (
-    load_message, display_multipart, download_attachment, clear_message, clear_all_messages
-)
+from django.urls import include, path, re_path
 
-_PREFIX = 'mail_toolbar'
+from . import views
+
+mail_toolbar_patterns = [
+    path("load_message/<slug:message_id>/", views.load_message, name="load_message"),
+    path(
+        "download_attachment/<slug:message_id>/<int:attachment_id>/",
+        views.download_attachment,
+        name="download_attachment",
+    ),
+    re_path(
+        r"^display_multipart/(?P<message_id>[\w]+)/(?P<multipart>[\w/]+)$",
+        views.display_multipart,
+        name="display_multipart",
+    ),
+    path("clear_message/<slug:message_id>/", views.clear_message, name="clear_message"),
+    path("clear_all_messages/", views.clear_all_messages, name="clear_all_messages"),
+]
 
 urlpatterns = [
-    url(
-        r'^{0}/load_message/(?P<message_id>[\w]+)/$'.format(_PREFIX),
-        load_message,
-        name="load_message"
-    ),
-    url(
-        r'^{0}/download_attachment/(?P<message_id>[\w]+)/(?P<attachment_id>[\d]+)/$'.format(_PREFIX),
-        download_attachment,
-        name="download_attachment"
-    ),
-    url(
-        r'^{0}/display_multipart/(?P<message_id>[\w]+)/(?P<multipart>[\w/]+)$'.format(_PREFIX),
-        display_multipart,
-        name="display_multipart"
-    ),
-
-    url(
-        r'^{0}/clear_message/(?P<message_id>[\w]+)/$'.format(_PREFIX),
-        clear_message,
-        name="clear_message"
-    ),
-    url(
-        r'^{0}/clear_all_messages/$'.format(_PREFIX),
-        clear_all_messages,
-        name="clear_all_messages"
-    ),
+    path("mail_toolbar/", include(mail_toolbar_patterns)),
 ]
