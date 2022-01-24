@@ -8,7 +8,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "django"
-version = "2.2.25"
+version = "2.2.26"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -61,8 +61,8 @@ bump2version = [
     {file = "bump2version-1.0.1.tar.gz", hash = "sha256:762cb2bfad61f4ec8e2bdf452c7c267416f8c70dd9ecb1653fd0bbb01fa936e6"},
 ]
 django = [
-    {file = "Django-2.2.25-py3-none-any.whl", hash = "sha256:08bad7ef7e90286b438dbe1412c3e633fbc7b96db04735f0c7baadeed52f3fad"},
-    {file = "Django-2.2.25.tar.gz", hash = "sha256:b1e65eaf371347d4b13eb7e061b09786c973061de95390c327c85c1e2aa2349c"},
+    {file = "Django-2.2.26-py3-none-any.whl", hash = "sha256:85e62019366692f1d5afed946ca32fef34c8693edf342ac9d067d75d64faf0ac"},
+    {file = "Django-2.2.26.tar.gz", hash = "sha256:dfa537267d52c6243a62b32855a744ca83c37c70600aacffbfd98bc5d6d8518f"},
 ]
 django-debug-toolbar = [
     {file = "django-debug-toolbar-1.11.1.tar.gz", hash = "sha256:10f5ef59c97fad34b803b02e5850b6422082e2e44544c2ec03feb4eeee0f9158"},
