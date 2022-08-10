@@ -1,5 +1,7 @@
 # Changelog
 
+* 4.0.2 Mail panel is added by default to the debug toolbar.
+* 4.0.0 Adds support for Django 4.0
 * 3.2.4 Adds tab to view raw message.  Added X-Headers to header. (Thanks @benspaulding)
 * 3.2.1 Local timezone is now used to store messages. (Thanks @jensenbox)
 * 3.2 Adds ability to resize panels and clear messages. (Thanks @jensenbox)
