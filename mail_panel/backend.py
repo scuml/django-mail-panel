@@ -27,6 +27,7 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
             body=message.body,
             alternatives=message.alternatives,
             headers=message.extra_headers,
+            attachments=message.attachments,
         )
 
 
