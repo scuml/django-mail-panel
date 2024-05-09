@@ -17,6 +17,8 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
         self.read = False
         message.message()  # triggers header validation
 
+        alternatives = getattr(message, "alternatives", None)
+
         super(MailToolbarBackendEmail, self).__init__(
             subject=message.subject,
             to=message.to,
@@ -25,7 +27,7 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
             reply_to=message.reply_to,
             from_email=message.from_email,
             body=message.body,
-            alternatives=message.alternatives,
+            alternatives=alternatives,
             headers=message.extra_headers,
             attachments=message.attachments,
         )
