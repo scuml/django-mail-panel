@@ -25,6 +25,7 @@ class MailToolbarPanel(Panel):
     template = 'mail_panel/panel.html'
     has_content = True
     mail_list = OrderedDict()
+    is_async = True
 
     @property
     def scripts(self):
