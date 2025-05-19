@@ -1,5 +1,6 @@
 # Changelog
 
+* 4.0.5 Updates panel to work with upcoming `serializable` branch.
 * 4.0.4 Patches issue with missing alternatives attribute in mail object.
 * 4.0.2 Mail panel is added by default to the debug toolbar.
 * 4.0.0 Adds support for Django 4.0

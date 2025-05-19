@@ -9,17 +9,14 @@ from .utils import load_outbox, save_outbox
 
 class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
     def __init__(self, message):
-        try:
-            self.id = uuid4().get_hex()
-        except AttributeError:
-            self.id = uuid4().hex  # python 3
+        self.id = uuid4().hex
         self.date_sent = now()
         self.read = False
         message.message()  # triggers header validation
 
         alternatives = getattr(message, "alternatives", None)
 
-        super(MailToolbarBackendEmail, self).__init__(
+        super().__init__(
             subject=message.subject,
             to=message.to,
             cc=message.cc,
@@ -33,6 +30,10 @@ class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
         )
 
 
+    @property
+    def get_subject(self):
+        return self.subject
+
 class MailToolbarBackend(EmailBackend):
     """A email backend for use during testing.
 
@@ -44,7 +45,7 @@ class MailToolbarBackend(EmailBackend):
     """
 
     def __init__(self, *args, **kwargs):
-        super(MailToolbarBackend, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.outbox = load_outbox()
 
@@ -57,4 +58,4 @@ class MailToolbarBackend(EmailBackend):
 
         save_outbox(self.outbox)
 
-        return super(MailToolbarBackend, self).send_messages(messages)
+        return super().send_messages(messages)
