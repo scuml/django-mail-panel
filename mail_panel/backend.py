@@ -8,11 +8,14 @@ from .utils import load_outbox, save_outbox
 
 
 class MailToolbarBackendEmail(mail.EmailMultiAlternatives):
-    def __init__(self, message):
-        try:
-            self.id = uuid4().get_hex()
-        except AttributeError:
-            self.id = uuid4().hex  # python 3
+    def __init__(self, message, id=None):
+        if id:
+            self.id = id
+        else:
+            try:
+                self.id = uuid4().get_hex()
+            except AttributeError:
+                self.id = uuid4().hex  # python 3
         self.date_sent = now()
         self.read = False
         message.message()  # triggers header validation
