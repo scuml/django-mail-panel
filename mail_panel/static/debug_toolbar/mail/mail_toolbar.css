@@ -15,7 +15,21 @@
 	border: 0;
 	margin: 0;
 }
+#djDebug .djm-mail-toolbar .t-center{
+	text-align: center;
+    vertical-align: middle;
+}
+#djDebug .djm-mail-toolbar thead{
+	background: linear-gradient(
+        to bottom,
+        #fff 0%, /* Light gray at the top */
+        #fcfcfc 20%, /* Light gray at the top */
+        #f9f9f9 80%, /* Mid-tone gray */
+        #f5f5f5 100% /* Slightly darker at the bottom */
+    );
 
+
+}
 #djDebug .djm-mail-toolbar tr{
 	display:table-row;
 	width: 100%;
@@ -26,34 +40,42 @@
 	color: white;
 }
 #djDebug .djm-mail-toolbar tbody tr:hover{
-	background-color: #f5f5f5;
+	background-color: #f5f5f5!important;
 }
 #djDebug .djm-mail-toolbar thead th{
 	font-weight:300;
-	font-size: 12px;
 	border-bottom: 1px solid #d5d6d5;
 	border-left: 1px solid #e5e5e5;
+	font-size: 12px;
+	padding: 5px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
+
 #djDebug .djm-mail-toolbar thead th:first-child{
 	border-left: 0px;
 }
-#djDebug .djm-mail-toolbar th,#djDebug .djm-mail-toolbar td{
-	display:table-cell;
+#djDebug .djm-mail-toolbar th,#djDebug .djm-mail-toolbar tbody td{
+	display: table-cell;
+	font-size: 14px;
+	padding: 4px;
 }
 #djDebug .djm-mail-toolbar .djm-unread-cell{
-	width: 18px;
+	width: 24px;
 }
 
 #djDebug .djm-mail-toolbar .djm-unread{
 	display:block;
 	background-color: #6cadf0 !important;
-	height: 8px;
-	width: 8px;
+	height: 9px;
+	width: 9px;
 	margin: 5px 5px 0px 5px;
 	border-radius:10px;
-	box-shadow: -1px -1px 3px rgba(0,0,0,.25) inset;
-
+	box-shadow:
+        1px 1px 2px rgba(255, 255, 255, 0.2), /* Outer highlight for raised effect */
+        inset -1px -1px 1px rgba(0, 0, 0, 0.1), /* Inner shadow for bevel */
+        inset 1px 1px 1px rgba(255, 255, 255, 0.3); /* Inner highlight for bevel */
 }
+
 #djDebug .djm-mail-toolbar .djm-message-list {
 	max-height: 500px;
 	overflow: scroll;
@@ -80,6 +102,7 @@
 #djDebug .djm-mail-toolbar .djm-date-sent{
 	float: right;
 	color: #888 !important;
+	font-size:14px;
 }
 #djDebug .djm-mail-toolbar .djm-extra-headers{
 	border-top: 1px solid #f5f5f5;
@@ -114,7 +137,7 @@
 
 #djDebug .djm-mail-toolbar #plain_text_message,
 #djDebug .djm-mail-toolbar #raw_message{
-	font-size: 12px;
+	font-size: 14px;
 	margin: 10px 0px;
 }
 #djDebug .djm-mail-toolbar #plain_text_message{
@@ -143,6 +166,11 @@
 	margin-right: 5px;
 }
 #djDebug .djm-mail-toolbar .table-icon{
-	height: 14px;
+	height: 16px;
 	margin-top: 2px;
 }
+
+#djm_message_overview span, #djm_message_overview b , #djm_message_overview div{
+	font-size: 14px;
+}
+

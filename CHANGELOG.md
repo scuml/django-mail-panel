@@ -1,6 +1,11 @@
 # Changelog
 
-* 4.0.5 Updates panel to work with upcoming `serializable` branch.
+* 4.1
+    - Updates panel to work with upcoming `serializable` branch. (Thanks @tim-schilling for the heads up on this.)
+    - Adds async support (Thanks @dchukhin)
+    - Increases font-size now that screens are larger and adds subtle depth back to UI.
+
+
 * 4.0.4 Patches issue with missing alternatives attribute in mail object.
 * 4.0.2 Mail panel is added by default to the debug toolbar.
 * 4.0.0 Adds support for Django 4.0
