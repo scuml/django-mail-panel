@@ -23,6 +23,7 @@ class MailToolbarPanel(Panel):
     has_content = True
     is_historical = False
     mail_list = OrderedDict()
+    is_async = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
