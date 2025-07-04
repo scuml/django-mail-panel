@@ -16,13 +16,11 @@ classifiers = [
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.3',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
 ]
 include = [
     "LICENSE",
@@ -33,11 +31,12 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.5"
-django-debug-toolbar = ">=1.0"
+python = "^3.9"
+django-debug-toolbar = "5.2.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 bump2version = "^1.0.1"
+pytest = "^8.4.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
