@@ -22,13 +22,8 @@ class ToolbarSuite(unittest.TestCase):
 
         self.request = rf.post("/submit/", {"foo": "bar"})
 
-        # django-debug-toolbar 1.x take 1 argument, 2.x take 2 arguments
-        if debug_toolbar_version < "2.0":
-            self.toolbar = DebugToolbar(self.request)
-            self.panel_args = (self.toolbar,)
-        else:
-            self.toolbar = DebugToolbar(self.request, None)
-            self.panel_args = (self.toolbar, None)
+        self.toolbar = DebugToolbar(self.request, None)
+        self.panel_args = (self.toolbar, None)
 
     @staticmethod
     def get_fake_message(
@@ -68,21 +63,18 @@ class ToolbarSuite(unittest.TestCase):
 
         p = MailToolbarPanel(*self.panel_args)
 
-        # Test empty indox
-        p.generate_stats(None, None)
-        self.assertEqual(len(p.mail_list), 0)
+        # Test empty inbox
+        mail_list = p.get_mail_list()
+        self.assertEqual(len(mail_list), 0)
 
         # Test inbox with one message
         fake_message = self.get_fake_message()
         backend = MailToolbarBackend()
         backend.send_messages([fake_message])
 
-        p.generate_stats(None, None)
-        self.assertEqual(len(p.mail_list), 1)
+        mail_list = p.get_mail_list()
+        self.assertEqual(len(mail_list), 1)
 
-    def test_process_response(self):
-        p = MailToolbarPanel(*self.panel_args)
-        p.process_response(None, None)
 
     def test_backend_email(self):
         fake_message = self.get_fake_message()

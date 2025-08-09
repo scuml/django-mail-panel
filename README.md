@@ -114,11 +114,26 @@ original_outbox = len(mail.outbox)
 assert(len(mail.outbox) == original_outbox + 1)
 ```
 
+Contributing
+============
+
+Install the development dependencies:
+
+```bash
+poetry install --with dev
+```
+
+Run the tests on your current python:
+
+```bash
+pytest .
+```
+
+
+
+
 Shameless Plugs
 =======
-Like Django Mail Panel?  Be sure to check out and support these other tools for Mac that will improve your workflow:
-
-**[Kubermagic](https://echodot.com/kubermagic/)** - Automate, and script away tedious kubectl commands with Kubermagic; a UI for developers, QA teams, and those starting to learn the ins-and-outs of Kubernetes.     
-
+Like Django Mail Panel?  Be sure to check out and support this other tool for Mac that will improve your workflow:
 
 **[Red](https://echodot.com/red/)** - A visual and interactive Redis client, featuring live updating keys, an interactive console, pub/sub, lua script support and much more.

@@ -1,0 +1,16 @@
+<DOCTYPE html>
+<html lang="en-us">
+<head></head>
+<body>
+{% for message in messages %}
+ ⚠️ {{message}}<br>
+{% endfor %}
+
+<h1>Django Mail Panel Test</h1>
+<p><a href="{% url "send_test_email" %}">Send Test Email</a></p>
+<p><a href="{% url "send_test_attachment" %}">Send Test Email + Attachment</a></p>
+<p>After clicking the link above, check the Django Debug Toolbar mail panel.</p>
+
+
+</body>
+</html>
