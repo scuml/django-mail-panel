@@ -22,6 +22,7 @@ function djmail_get(url, callback)
     };
     req.open("GET", url, true);
     req.send();
+    console.info("get");
 }
 
 function djmail_load(url, element, callback)
@@ -54,9 +55,9 @@ djmail_document_ready(function(){
     }
 
     function resize_message() {
-        let new_height = window.innerHeight - $q("#djm_message_container").getBoundingClientRect().top + window.scrollY + window.pageYOffset -10
+        let new_height = window.innerHeight - $q("#djm_message_container").getBoundingClientRect().top + window.scrollY + window.pageYOffset - 70
         $q("#djm_message_container").style.height = new_height + "px";
-        let preview_height = new_height - $q("#djm_message_overview").style.height - 10;
+        let preview_height = new_height - $q("#djm_message_overview").style.height - 70;
         $q("#djm_message_preview").style.height = preview_height;
     }
 
