@@ -22,7 +22,6 @@ class MailToolbarPanel(Panel):
     template = 'mail_panel/panel.html'
     has_content = True
     is_historical = False
-    mail_list = OrderedDict()
     is_async = True
 
     def __init__(self, *args, **kwargs):

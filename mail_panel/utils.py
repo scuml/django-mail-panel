@@ -1,11 +1,6 @@
 from django.core.cache import caches
 
-try:
-    CACHE_SETTINGS = caches.settings
-except AttributeError:  # < Django 3.2
-    from django.conf import settings
-
-    CACHE_SETTINGS = settings.CACHES
+CACHE_SETTINGS = caches.settings
 
 from .conf import MAIL_TOOLBAR_CACHE_KEY, MAIL_TOOLBAR_TTL
 
