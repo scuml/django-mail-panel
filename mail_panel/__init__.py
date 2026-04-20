@@ -1,4 +1,4 @@
-__version__ = '4.1'
+__version__ = '4.1.0'
 
 # Monkey patch the PANELS_DEFAULTS to add mail panel
 try:
