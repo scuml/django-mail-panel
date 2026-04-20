@@ -1,9 +1,7 @@
 
 ## Django Debug Toolbar - Mail Panel
 
-[![Build Status](https://secure.travis-ci.org/scuml/django-mail-panel.png?branch=master)](http://travis-ci.org/scuml/django-mail-panel)
-
-![](https://cloud.githubusercontent.com/assets/1790447/9289964/6aa7c4ba-434e-11e5-8594-3bb3efd0cd81.png)
+![](https://github.com/user-attachments/assets/5ed94f1d-3a21-4d30-a486-0911cd627820)
 
 
 Testing and debugging e-mail while developing a Django app has never been pleasant.  Sending e-mail to a file-based backend requires a user to click through obtusely-named files and does not provide a way to preview rendered HTML.  Sending e-mail to a valid mailbox incurs a delay as the message is processed though a mail server, and clutters a developer's inbox.
