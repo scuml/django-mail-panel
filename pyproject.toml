@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-mail-panel"
-version = "4.1"
+version = "4.1.1"
 description = "A panel for django-debug-toolbar that allows for viewing of recently sent email."
 authors = ["Stephen Mitchell"]
 license = "Apache Software License"
@@ -32,7 +32,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-django-debug-toolbar = "5.2.0"
+django-debug-toolbar = ">=5.2.0"
 
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1.0.1"
