@@ -35,7 +35,6 @@ python = "^3.9"
 django-debug-toolbar = ">=5.2.0"
 
 [tool.poetry.group.dev.dependencies]
-bump2version = "^1.0.1"
 pytest = "^8.4.0"
 pytest-env = "^1.1.5"
 
@@ -57,3 +56,10 @@ source = [
     "tests",
     "mail_panel",
 ]
+
+[tool.bumpversion]
+current_version = "4.1.0"
+tag = true
+commit = true
+message = "Bump version: {current_version} → {new_version}"
+commit_args = ""
