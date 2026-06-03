@@ -50,9 +50,6 @@ class MailToolbarPanel(Panel):
     def title(self):
         return _('Mail')
 
-    def get_stats(self):
-        return self.generate_stats()
-
     @property
     def content(self):
         mail_list = self.get_mail_list()
