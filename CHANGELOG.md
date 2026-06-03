@@ -1,5 +1,6 @@
 # Changelog
 
+* 6.0.0 Version compatibility with django-debug-toolbar == 6
 * 4.1.1 Bumps version compatibility with django-debug-toolbar > 5.2
 * 4.1
     - Updates panel to work with latest Django Toolbar `serializable` branch. (Thanks @tim-schilling for the heads up on this.)
