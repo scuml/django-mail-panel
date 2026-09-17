@@ -20,35 +20,29 @@
     vertical-align: middle;
 }
 #djDebug .djm-mail-toolbar thead{
-	background: linear-gradient(
-        to bottom,
-        #fff 0%,
-        #fcfcfc 20%,
-        #f9f9f9 80%,
-        #f5f5f5 100%
-    );
-
-
+	background: var(--djdt-table-header-background-color, #f8f8f8);
+	color: var(--djdt-table-header-color, #666);
 }
 #djDebug .djm-mail-toolbar tr{
 	display:table-row;
 	width: 100%;
 	cursor: pointer;
 }
-#djDebug .djm-mail-toolbar tr.selected td{
-	background-color: #6caef1;
+/* Backgrounds go on td so they win over the toolbar's row striping. */
+#djDebug .djm-mail-toolbar tbody tr:hover td{
+	background-color: var(--djdt-highlighted-background-color, #f5f5f5);
+}
+#djDebug .djm-mail-toolbar tbody tr.selected td{
+	background-color: var(--djdt-accent-color, #6caef1);
 	color: white;
 }
-#djDebug .djm-mail-toolbar tbody tr:hover{
-	background-color: #f5f5f5!important;
-}
 #djDebug .djm-mail-toolbar thead th{
-	font-weight:300;
-	border-bottom: 1px solid #d5d6d5;
-	border-left: 1px solid #e5e5e5;
-	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 1px solid var(--djdt-button-border-color, #d5d6d5);
+	border-left: 1px solid var(--djdt-button-border-color, #e5e5e5);
+	font-size: 11px;
+	text-transform: uppercase;
 	padding: 5px;
-	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 
 #djDebug .djm-mail-toolbar thead th:first-child{
@@ -65,7 +59,7 @@
 
 #djDebug .djm-mail-toolbar .djm-unread{
 	display:block;
-	background-color: #6cadf0 !important;
+	background-color: var(--djdt-accent-color, #6cadf0) !important;
 	height: 9px;
 	width: 9px;
 	margin: 5px 5px 0px 5px;
@@ -78,15 +72,16 @@
 
 #djDebug .djm-mail-toolbar .djm-message-list {
 	max-height: 500px;
-	overflow: scroll;
-	border: 1px solid #d5d6d5;
+	overflow: auto;
+	border: 1px solid var(--djdt-button-border-color, #d5d6d5);
 	resize: vertical;
 }
 #djDebug .djm-mail-toolbar div#djm_message_container {
 	width:100%;
 	box-sizing: border-box;
-	background:white;
-	border: 1px solid #c0c1c0;
+	background: var(--djdt-panel-content-table-background-color, white);
+	color: var(--djdt-font-color, black);
+	border: 1px solid var(--djdt-button-border-color, #c0c1c0);
 	padding: 15px;
 	opacity:0;
 	margin-top: 5px!important;
@@ -101,20 +96,22 @@
 }
 #djDebug .djm-mail-toolbar .djm-date-sent{
 	float: right;
-	color: #888 !important;
+	color: var(--djdt-stack-span-color, #888) !important;
 	font-size:14px;
 }
 #djDebug .djm-mail-toolbar .djm-extra-headers{
-	border-top: 1px solid #f5f5f5;
-	color: #888 !important;
+	border-top: 1px solid var(--djdt-button-border-color, #f5f5f5);
+	color: var(--djdt-stack-span-color, #888) !important;
 }
 #djDebug .djm-mail-toolbar #djm_message_overview{
-	border-bottom: 1px solid #f5f5f5;
+	border-bottom: 1px solid var(--djdt-button-border-color, #f5f5f5);
 	position:relative;
 }
 #djDebug .djm-mail-toolbar iframe{
 	width:100%;
 	height:100%;
+	/* Email bodies assume a light background regardless of toolbar theme. */
+	background: white;
 }
 #djDebug .djm-mail-toolbar span.djm-multipart-tabs{
 	clear: both;
@@ -122,24 +119,23 @@
 #djDebug .djm-mail-toolbar span.djm-multipart-tab{
 	padding: 5px;
 	cursor:pointer;
-	border: 1px solid #f5f5f5;
-	background: white;
-	color: #333;
+	background: var(--djdt-table-header-background-color, #f3f3f3);
+	color: var(--djdt-font-color, #333);
 	float: right;
 	margin-top:-15px;
 	margin-left: 5px;
 	position:relative;
 	z-index:99;
-	background-image: linear-gradient(179deg, #FFFFFF 5%, #f9f9f9f9 47%, #f0f0f0f0 52%, #F3F3F3 100%);
-	border: 1px solid #939393;
-	box-shadow: 0px 1px 0 0 rgba(255,255,255,.35);
+	border: 1px solid var(--djdt-button-border-color, #939393);
 	border-radius: 5px;
-
+}
+#djDebug .djm-mail-toolbar span.djm-multipart-tab:hover{
+	border-color: var(--djdt-button-hover-border-color, #aaa);
 }
 #djDebug .djm-mail-toolbar span.djm-multipart-tab.djm-multipart-tab-select{
 	color: white;
-	background-image: linear-gradient(180deg, #888 5%, #999 40%, #aa9 60%, #ccc 100%);
-	box-shadow: inset 0px 2px 3px 0 rgba(0,0,0,.15) ;
+	background: var(--djdt-accent-color, #888);
+	border-color: var(--djdt-accent-color, #888);
 }
 
 #djDebug .djm-mail-toolbar #plain_text_message,

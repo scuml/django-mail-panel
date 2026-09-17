@@ -20,6 +20,8 @@ class MailToolbarPanel(Panel):
     """
     name = 'Mail'
     template = 'mail_panel/panel.html'
+    # Sidebar icon, shown by django-debug-toolbar >= 8 (ignored by older versions).
+    nav_icon = 'debug_toolbar/mail/mail.svg'
     has_content = True
     is_historical = False
     is_async = True

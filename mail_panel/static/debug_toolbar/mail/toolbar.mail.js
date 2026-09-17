@@ -38,8 +38,15 @@ function djmail_load(url, element, callback)
 
 djmail_document_ready(function(){
 
-    var $q = document.querySelector.bind(document);
-    var $qa = document.querySelectorAll.bind(document);
+    // django-debug-toolbar >= 7 renders the toolbar inside a shadow DOM by
+    // default, which document.querySelector cannot see into. Scope lookups
+    // to the shadow root when present, falling back to the document.
+    function djmail_root() {
+        var root = document.getElementById("djDebugRoot");
+        return (root && root.shadowRoot) ? root.shadowRoot : document;
+    }
+    var $q = function(selector) { return djmail_root().querySelector(selector); };
+    var $qa = function(selector) { return djmail_root().querySelectorAll(selector); };
 
     window.onresize = resize_message;
 
@@ -55,8 +62,11 @@ djmail_document_ready(function(){
     }
 
     function resize_message() {
-        let new_height = window.innerHeight - $q("#djm_message_container").getBoundingClientRect().top + window.scrollY + window.pageYOffset - 70
-        $q("#djm_message_container").style.height = new_height + "px";
+        let container = $q("#djm_message_container");
+        if (!container)
+            return;
+        let new_height = window.innerHeight - container.getBoundingClientRect().top + window.scrollY + window.pageYOffset - 70
+        container.style.height = new_height + "px";
         let preview_height = new_height - $q("#djm_message_overview").style.height - 70;
         $q("#djm_message_preview").style.height = preview_height;
     }

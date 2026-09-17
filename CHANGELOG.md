@@ -1,5 +1,10 @@
 # Changelog
 
+* Unreleased
+    - Fixes panel JS when django-debug-toolbar >= 7 renders the toolbar in a shadow DOM (#53). Element lookups are now scoped to the shadow root, and window resize no longer throws when the panel is not rendered.
+    - Panel styling now uses django-debug-toolbar's theme variables, so it follows the light/dark theme.
+    - Adds a sidebar icon (django-debug-toolbar >= 8).
+    - Message list only shows scrollbars when needed.
 * 6.0.0 Version compatibility with django-debug-toolbar == 6
 * 4.1.1 Bumps version compatibility with django-debug-toolbar > 5.2
 * 4.1
